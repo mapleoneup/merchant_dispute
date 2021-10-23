@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Merchant Dispute</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<table>
+  <thead>
+    <tr>
+      <th><h2>Recipient</h2></th>
+      <th><h2>Dispute Reason</h2></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>
+  <input type="radio" name="who" onclick="toWho()" value="customer_">Customer<br>
+  <input type="radio" name="who" onclick="toWho()" value="merchant_">Merchant<br>  
+</p></td>
+      <td><p>
+  <input type="radio" name="why" onclick="toWhy()" value="cancel">Cancellation/Return not processed<br>
+  <input type="radio" name="why" onclick="toWhy()" value="duplicate">Duplicate<br>
+  <input type="radio" name="why" onclick="toWhy()" value="incorrect">Incorrect Amount<br>
+  <input type="radio" name="why" onclick="toWhy()" value="received">Product not received<br>
+  <input type="radio" name="why" onclick="toWhy()" value="unacceptable">Product Unacceptable<br>
+  <input type="radio" name="why" onclick="toWhy()" value="technical">Technical<br>
+  <input type="radio" name="why" onclick="toWhy()" value="policy">Policy<br>
+</p></td>
+    </tr>
+    <tr>
+      <td><a id="recipient"></a></td>
+      <td><a id="reason"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<input type="button" value="Copy Requirements" onclick="copyRqm()">
+<br>
+<br>
+
+<table>
+<tbody>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Reason</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Customer</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Merchant</p>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Cancellation or Return not Processed</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_cancel">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+<ul>
+<li>The date the product(s)/service(s) were canceled or returned</li>
+<li>The name of shipping company, date and tracking status of returned product(s) delivered successfully to the merchant</li>
+<li>Copy of dated Return/Credit transaction receipt #</li>
+</ul>
+</ul>
+<ul>
+<li>Merchant confirmation to support cancellation or return</li>
+<li>Copy of any customer/merchant communication history</li>
+<ul>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_cancel">
+<ul>
+<li>For Returns: Pictures showing state of returned items or services; thus, supporting why charge wasn&rsquo;t refunded. Include break down of charges, fees, etc. (itemized).</li>
+<li>Explanation of why the customer is unable to return or cancel the purchase per your policy.</li>
+</ul>
+<ul>
+<li>Correspondences regarding request to cancel</li>
+</ul>
+<ul>
+<li>Order Invoice or itinerary</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Duplicate</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_duplicate">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+<ul>
+<li>Copy of customer/merchant communication history</li>
+<ul>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+<ul>
+<li>Explanation for duplicate charge</li>
+<li>e.g. timeline showing charge was unintentional</li>
+</ul>
+</ul>
+<ul>
+<li>Proof that separate transactions were processed - one transaction is valid, but posted more than once</li>
+</ul>
+<ul>
+<li>Proof that merchant did not receive payment by other means for the same product</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_duplicate">
+<ul>
+<li>Order Invoice</li>
+<li>Proof that additional charge was intentional and/or received by the consumer</li>
+</ul>
+<ul>
+<li>Tracking Information for BOTH purchases.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Incorrect Amount</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_incorrect">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+<li>Copy of any customer/merchant communication history</li>
+<ul>
+<li>Merchant confirmation of charge difference</li>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+<ul>
+<li>Proof of pricing from the merchant&rsquo;s website</li>
+</ul>
+<ul>
+<li>Proof of the promotions that should have been applied to purchase</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_incorrect">
+<ul>
+<li>Order Invoice</li>
+<li>Copy of correct price from merchant&rsquo;s website</li>
+</ul>
+<ul>
+<li>Copy of the promo showing purchase was ineligible</li>
+</ul>
+<ul>
+<li>Explanation of why the customer is not due a expected amount per their policy</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Product Not Received</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_received">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+</ul>
+<ul>
+<li>When was the expected delivery date/time or pick-up date/time</li>
+<li>Proof that merchandise was not received at the agreed location</li>
+</ul>
+<ul>
+<li>Copy of any customer/merchant communication history</li>
+<ul>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+<ul>
+<li>For physical goods: Shipping/tracking details showing product did not arrive at the requested address, did not meet shipping preferences, was sent back to the carrier or merchant or did not obtain the required signature. This can be obtained by the carriers Refund and Replacement team to investigate where their package is, what happened to it and / or obtain confirmation that a signature was not appropriately obtained (EX: Was the left at the front door rather than receiving the required signature?).</li>
+</ul>
+<ul>
+<li>Correspondence showing shipment was delayed or cancelled</li>
+</ul>
+<ul>
+<li>Proof of Carrier company investigation (Include supporting documents with case ID#): If the carrier is at fault for mishandling shipment or a Signature wasn't obtain (which could result in package being stolen)</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_received">
+<ul>
+<li>Order Tracking</li>
+<li>Carrier Investigation Details</li>
+<li>Order Invoice</li>
+<li>For physical goods: Shipping/tracking details showing product arrived at the requested address with any applicable signatures.</li>
+</ul>
+<ul>
+<li>For digital goods: Buyer IP address and the device geographical location at the time of purchase, Buyer's name and email address linked to the customer profile, evidence that the same device and card used in the disputed payment was used in previous payment that was not disputed.</li>
+</ul>
+<ul>
+<li>Correspondence or social media showing consumer acknowledged receipt of product</li>
+</ul>
+<ul>
+<li>Investigation performed by carrier</li>
+</ul>
+<ul>
+<li>Explanation of the merchant&rsquo;s shipping policy.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Product Unacceptable</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_unacceptable">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+<li>Copy of any customer/merchant communication history</li>
+<ul>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+<ul>
+<li>Evidence describing how the merchant&rsquo;s product description does not match the product received</li>
+<ul>
+<li>Include multiple, high-quality photos to support the product was not as described</li>
+<li>Packaging box damages, physical item damages, picture of all item received in the parcel</li>
+</ul>
+</ul>
+<ul>
+<li>Screenshot or Copy of product listing and description as advertised by Merchant</li>
+</ul>
+<ul>
+<li>Expert documentation disproving authenticity</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_unacceptable">
+<ul>
+<li>Order Invoice</li>
+<li>Product description from merchant&rsquo;s website</li>
+</ul>
+<ul>
+<li>Picture to show condition prior to shipping</li>
+</ul>
+<ul>
+<li>Expert documentation proving authenticity</li>
+</ul>
+<ul>
+<li>Details from merchant policy around accepting merchant goods</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Technical</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_technical">
+<ul>
+<li>Order Invoice, statement, tracking number and details</li>
+<li>Copy of any customer/merchant communication history</li>
+<ul>
+<li>Email, Chat Support, SMS texts/alerts, etc.</li>
+</ul>
+</ul>
+<ul>
+<li>Screenshot of technical error message that was received and description of customer actions and what occurred as a result</li>
+</ul>
+<ul>
+<li>Proof of payment (e.g. bank statement)</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_technical">
+<ul>
+<li>Order Invoice</li>
+<li>Explanation for what occurred and why the consumer&rsquo;s claim is false</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Policy</p>
+</td>
+<td colspan="1" rowspan="1" id="customer_policy">
+<ul>
+<li>Order Invoice</li>
+<li>Communications with merchant</li>
+<li>Copy of merchant or Affirm&rsquo;s policies showing that the terms were not clearly defined or merchant or Affirm did not act in accordance with its policies</li>
+</ul>
+</td>
+<td colspan="1" rowspan="1" id="merchant_policy">
+<ul>
+<li>Order Invoice</li>
+<li>Copy of merchant or Affirm&rsquo;s policies showing that the terms were clearly defined or that merchant or Affirm acted accordance with its policies</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
